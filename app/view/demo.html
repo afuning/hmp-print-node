@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>分享demo</title>
+  </head>
+  <style>
+    #share-container {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+  </style>
+  <body>
+    <div id="share-container">分享内容</div>
+    <button id="share-button">分享</button>
+  </body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+  <script>
+    const shareButton = document.getElementById('share-button')
+    shareButton.addEventListener('click', () => {
+      axios.get(`http://127.0.0.1:7001/getScreenshot`, {
+        params: {
+          url: 'http://127.0.0.1:7001/demo',
+          ele: '#share-container',
+          width: 200,
+          height: 200
+        }
+      }).then((res) => {
+        console.log(res)
+        const newImg = document.createElement('img')
+        newImg.src = res.data.data
+        document.body.appendChild(newImg)
+      })
+    })
+  </script>
+</html>
