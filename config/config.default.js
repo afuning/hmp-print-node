@@ -41,7 +41,7 @@ module.exports = appInfo => {
       memory: {
         driver: 'memory',
         max: 100,
-        ttl: 10, // 生存时间
+        ttl: 3600, // 生存时间
       },
     },
   };
